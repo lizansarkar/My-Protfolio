@@ -1,2 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
 @import "tailwindcss";
 @plugin "daisyui";
+
+body {
+  font-family: "Nunito", system-ui, sans-serif;
+  background-color: #060010;
+  color: #eaeaea;
+}
+
+.container-base {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+:root {
+  /* Base */
+  --color-base-100: #060010;
+  --color-base-content: #eaeaea;
+
+  /* Primary / Accent */
+  --color-primary: #28e98c;
+  --color-primary-content: #060010;
+
+  /* Secondary (text / subtle UI) */
+  --color-secondary: #eaeaea;
+  --color-secondary-content: #060010;
+
+  /* Neutral (derived from bg, no new color) */
+  --color-neutral: #060010;
+  --color-neutral-content: #eaeaea;
+
+  /* Radius (simple & clean) */
+  --radius-box: 0.75rem;
+  --radius-field: 0.5rem;
+  --radius-selector: 0.5rem;
+
+  /* Effects */
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(234, 234, 234, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #28e98c;
+}
+
+html,
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.text-muted {
+  color: rgba(234, 234, 234, 0.7);
+}
+
+.border-accent {
+  border: 1px solid rgba(40, 233, 140, 0.4);
+}
+
+/* glass crack effect */
+.bg-glass {
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(25px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* কাঁচের ফাটলের টেক্সচার */
+.glass-crack-texture {
+  background-image: url('https://www.transparenttextures.com/patterns/pinstriped-suit.png');
+  opacity: 0.05;
+}
+
+/* Active Pill Background */
+.active-pill {
+  position: absolute;
+  background: #eaeaea;
+  border-radius: 50px;
+  z-index: 10;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  display: block;
+}
+
+  @media (max-width: 768px) {
+    .nav-list{
+      display: flex;
+      flex-direction: row !important;
+    }
+  }
