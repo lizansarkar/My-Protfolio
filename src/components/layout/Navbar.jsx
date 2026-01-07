@@ -143,18 +143,9 @@ const Navbar = () => {
 
           {/* --- MOBILE GENIE MENU --- */}
           <div
-            className={`
-              absolute top-[75px] right-0 w-[200px] z-50 md:hidden
-              transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]
-              ${
-                isOpen
-                  ? "scale-100 opacity-100 translate-y-0 visible"
-                  : "scale-0 opacity-0 -translate-y-10 invisible"
-              }
-              origin-top-right z-50
-            `}
+            className={`absolute top-[85px] left-1/2 -translate-x-1/2 w-[100%] max-w-[400px] z-50 md:hidden transition-all duration-500 ${isOpen ? "scale-100 opacity-100" : "scale-0 opacity-0"} origin-top`}
           >
-            <div className="bg-black/80 backdrop-blur-xl border border-white/10 p-4 rounded-3xl shadow-2xl">
+            <div className="bg-black/80 backdrop-blur-xl border border-white/10 p-4 rounded-3xl shadow-2xl mobile-container">
               <GooeyNav items={navLinks} isMobile={true} />
             </div>
           </div>
