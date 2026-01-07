@@ -5,6 +5,7 @@ import Hero from "./sections/hero/Hero";
 import About from "./sections/about/About";
 import Projects from "./sections/projects/Projects";
 import Contact from "./sections/contact/Contact";
+import FireflyCursor from "./components/ui/FireflyCursor";
 // import Lenis from 'lenis';
 
 function App() {
@@ -24,8 +25,9 @@ function App() {
 
   return (
     <div className="bg-[#060010] min-h-screen text-white selection:bg-primary selection:text-black">
-      <Navbar />
+      <FireflyCursor></FireflyCursor>
 
+      <Navbar />
       <main>
         <Hero />
         
