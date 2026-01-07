@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-8 left-0 w-full z-[100] px-4">
-      <nav className="relative container-base max-w-4xl mx-auto">
+      <nav className="relative container-base mx-auto">
         {/* Main Navbar Body */}
         <div className="navbar-lightning-container relative bg-black/10 backdrop-blur-sm border border-white/5 py-4 px-6 md:px-8 rounded-2xl flex justify-between items-center shadow-[0_15px_40px_rgba(0,0,0,0.4)] group transition-all duration-300">
           {/* --- LIGHTNING LAYER (Same as before) --- */}
