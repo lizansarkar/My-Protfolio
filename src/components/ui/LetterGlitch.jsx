@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 
 const LetterGlitch = ({
-  glitchColors = ['#2b4539', '#28e98c', '#060010'], // তোমার থিম কালার অনুযায়ী
+  glitchColors = ['#2b4539', '#28e98c', '#060010'],
   glitchSpeed = 60,
   centerVignette = false,
   outerVignette = true,

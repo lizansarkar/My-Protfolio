@@ -56,30 +56,39 @@ const Hero = () => {
           className="flex-1 flex justify-start items-center w-full"
         >
           <div className="relative group w-full max-w-[350px] md:max-w-[480px]">
-            {/* ইমেজ ব্যাকগ্রাউন্ড গ্লো */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-primary/50 to-emerald-500/30 rounded-2xl blur-xl opacity-20 group-hover:opacity-60 transition duration-700"></div>
+            <div className="absolute -inset-4 bg-gradient-to-tr from-primary/30 via-emerald-500/20 to-transparent rounded-3xl blur-2xl opacity-30 group-hover:opacity-70 transition duration-700"></div>
 
-            <div className="relative z-10 aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-[#0a0515] shadow-2xl">
+            {/* ২. মেইন গ্লাস কার্ড কন্টেইনার */}
+            <div className="relative z-10 aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl transition-all duration-500 group-hover:border-primary/30">
+              {/* ইমেজ */}
               <img
-                src="/src/assets/images/profile.png"
+                src="/src/assets/images/remove-profile.png"
                 alt="Profile"
-                className="w-full h-full object-cover grayscale-0 group-hover:grayscale transition-all duration-700 scale-100 group-hover:scale-110"
+                className="w-full h-full object-cover transition-all duration-1000 scale-100 group-hover:scale-110 opacity-90 group-hover:opacity-100"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#060010]/90 via-transparent to-transparent"></div>
+
+              {/* ৩. গ্লাস গ্রেডিয়েন্ট ওভারলে (Navbar এর মত ইফেক্ট) */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0515] via-[#0a0515]/20 to-transparent opacity-80"></div>
+
+              {/* গ্লাস শাইন ইফেক্ট (হোভার করলে দেখা যাবে) */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none"></div>
             </div>
 
-            {/* এক্সপেরিয়েন্স ব্যাজ (Glowing Effect) */}
+            {/* ৪. এক্সপেরিয়েন্স ব্যাজ (এটিও গ্লাস ইফেক্টে) */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: false }}
               transition={{ delay: 0.5, type: "spring" }}
-              className="absolute -bottom-6 -right-4 md:-right-8 bg-[#0d0d1a] border border-primary/40 p-5 md:p-8 rounded-2xl backdrop-blur-xl z-20 shadow-[0_0_40px_rgba(40,233,140,0.3)]"
+              className="absolute -bottom-6 -right-4 md:-right-8 bg-white/5 border border-white/10 p-5 md:p-8 rounded-2xl backdrop-blur-xl z-20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group-hover:border-primary/40 transition-colors duration-500"
             >
-              <div className="text-4xl md:text-5xl font-black text-primary drop-shadow-[0_0_15px_rgba(40,233,140,0.6)]">
+              {/* ব্যাজের পেছনে একটি ছোট গ্লো */}
+              <div className="absolute inset-0 bg-primary/5 blur-xl rounded-2xl"></div>
+
+              <div className="relative z-10 text-4xl md:text-5xl font-black text-primary drop-shadow-[0_0_15px_rgba(40,233,140,0.6)]">
                 02+
               </div>
-              <div className="text-[10px] md:text-xs text-white uppercase tracking-[4px] font-bold mt-2 leading-tight opacity-80">
+              <div className="relative z-10 text-[10px] md:text-xs text-white uppercase tracking-[4px] font-bold mt-2 leading-tight opacity-80">
                 Years of <br /> Experience
               </div>
             </motion.div>
@@ -216,7 +225,7 @@ const Hero = () => {
             <div className="flex gap-6">
               {/* GitHub */}
               <a
-                href="https://github.com/your-username"
+                href="https://github.com/lizansarkar"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/40 hover:text-primary transition-all transform hover:scale-125 text-xl"
@@ -226,7 +235,7 @@ const Hero = () => {
 
               {/* LinkedIn */}
               <a
-                href="https://linkedin.com/in/your-username"
+                href="https://www.linkedin.com/in/lizan-sarkar-707042393/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/40 hover:text-primary transition-all transform hover:scale-125 text-xl"
@@ -236,7 +245,7 @@ const Hero = () => {
 
               {/* X (Twitter) */}
               <a
-                href="https://twitter.com/your-username"
+                href="https://x.com/LizanIslam35436"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/40 hover:text-primary transition-all transform hover:scale-125 text-xl"
@@ -248,7 +257,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* সেকশন বটম ফেড আউট */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#060010] to-transparent z-10"></div>
     </section>
   );
