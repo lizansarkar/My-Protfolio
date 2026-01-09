@@ -38,7 +38,7 @@ const FireflyCursor = () => {
           color: Math.random() > 0.5 ? '#28e98c' : '#a2ff00',
         },
       ]);
-    }, 1000);
+    }, 400);
 
     return () => clearInterval(sparkInterval);
   }, [fireflyX, fireflyY]);

@@ -135,7 +135,7 @@ const Hero = () => {
                 className="leading-none md:text-4xl xl:text-[60px] font-black"
               />
               {/* ডাইনামিক আন্ডারলাইন SVG */}
-              <svg
+              {/* <svg
                 className="absolute -bottom-1 left-0 w-full opacity-60"
                 viewBox="0 0 300 20"
                 fill="none"
@@ -146,7 +146,7 @@ const Hero = () => {
                   strokeWidth="6"
                   strokeLinecap="round"
                 />
-              </svg>
+              </svg> */}
             </span>
           </motion.h1>
 
