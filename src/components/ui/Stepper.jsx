@@ -33,10 +33,10 @@ export default function Stepper({
   return (
     <div className="w-full flex flex-col items-center">
       {/* মেইন গ্লাস বক্স */}
-      <div className="w-full bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-[2rem] overflow-hidden relative group shadow-2xl">
+      <div className="w-full backdrop-blur-xl border border-white/10 rounded-[2rem] overflow-hidden relative group shadow-2xl">
         
         {/* আপনার Navbar এর মতো লাইটনিং ইফেক্ট */}
-        <div className="absolute top-0 left-1/4 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+        <div className="absolute top-0 left-1/4 w-1/2 h-[1px]"></div>
         
         {/* Step Indicators */}
         <div className="flex items-center justify-between p-6 md:p-10 border-b border-white/5 bg-white/[0.02]">
@@ -87,7 +87,7 @@ export default function Stepper({
         <div className="p-6 md:p-8 flex justify-between items-center bg-white/[0.01] border-t border-white/5">
           <button
             onClick={handleBack}
-            className={`px-6 py-2 text-sm font-semibold transition-all ${
+            className={`px-6 py-2 text-sm font-semibold transition-all cursor-pointer ${
               currentStep === 1 ? 'opacity-0 pointer-events-none' : 'text-white/40 hover:text-primary'
             }`}
           >
@@ -97,7 +97,7 @@ export default function Stepper({
           <button
             onClick={handleNext}
             disabled={currentStep === totalSteps}
-            className={`px-8 py-3 rounded-xl font-bold transition-all flex items-center gap-2 ${
+            className={`px-8 py-3 rounded-xl font-bold transition-all flex items-center gap-2 cursor-pointer ${
               currentStep === totalSteps 
               ? 'bg-white/5 text-white/20 cursor-not-allowed' 
               : 'bg-primary text-black hover:shadow-[0_0_25px_rgba(40,233,140,0.4)] hover:scale-105 active:scale-95'

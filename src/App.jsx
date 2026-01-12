@@ -5,10 +5,11 @@ import Hero from "./sections/hero/Hero";
 import About from "./sections/about/About";
 import Projects from "./sections/projects/Projects";
 import Contact from "./sections/contact/Contact";
-import FireflyCursor from "./components/ui/FireflyCursor";
+// import FireflyCursor from "./components/ui/FireflyCursor";
 import ScrollToTop from "./components/ui/ScrollToTop";
 import { Scroll } from "lucide-react";
 import Lenis from 'lenis';
+import Skills from './sections/skills/Skills';
 
 function App() {
   useEffect(() => {
@@ -27,7 +28,7 @@ function App() {
 
   return (
     <div className="bg-[#060010] min-h-screen text-white selection:bg-primary selection:text-black">
-      <FireflyCursor></FireflyCursor>
+      {/* <FireflyCursor></FireflyCursor> */}
 
       <Navbar />
       <main>
@@ -35,6 +36,7 @@ function App() {
         
         <div className="container-base">
           <About />
+          <Skills />
           <Projects />
           <Contact />
         </div>

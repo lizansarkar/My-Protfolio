@@ -10,9 +10,85 @@ body {
 }
 
 .container-base {
-  max-width: 1400px;
+  /* max-width: 1400px; */
   margin-inline: auto;
-  padding-inline: 1.25rem;
+}
+
+/* Background Pattern */
+.pattern-background {
+  width: 100%;
+  height: 100%;
+  /* Add your background pattern here */
+  background-color: #060010;
+  background-image: radial-gradient(rgba(0, 255, 85, 0.110) 2px, transparent 0);
+  background-size: 30px 30px;
+  background-position: -5px -5px
+}
+
+.snake-pattern-background {
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(
+        circle farthest-side at 0% 50%,
+        rgba(40, 233, 140, 0.25) 23.5%,
+        transparent 0
+      )
+      21px 30px,
+
+    radial-gradient(
+        circle farthest-side at 0% 50%,
+        rgba(40, 233, 140, 0.18) 24%,
+        transparent 0
+      )
+      19px 30px,
+
+    linear-gradient(
+        #060010 14%,
+        transparent 0,
+        transparent 85%,
+        #060010 0
+      )
+      0 0,
+
+    linear-gradient(
+        150deg,
+        #060010 24%,
+        rgba(40, 233, 140, 0.12) 0,
+        rgba(40, 233, 140, 0.12) 26%,
+        transparent 0,
+        transparent 74%,
+        rgba(40, 233, 140, 0.12) 0,
+        rgba(40, 233, 140, 0.12) 76%,
+        #060010 0
+      )
+      0 0,
+
+    linear-gradient(
+        30deg,
+        #060010 24%,
+        rgba(40, 233, 140, 0.12) 0,
+        rgba(40, 233, 140, 0.12) 26%,
+        transparent 0,
+        transparent 74%,
+        rgba(40, 233, 140, 0.12) 0,
+        rgba(40, 233, 140, 0.12) 76%,
+        #060010 0
+      )
+      0 0,
+
+    linear-gradient(
+        90deg,
+        rgba(40, 233, 140, 0.2) 2%,
+        #060010 0,
+        #060010 98%,
+        rgba(40, 233, 140, 0.2) 0%
+      )
+      0 0
+      #060010;
+
+  background-size: 40px 60px;
+  color: #eaeaea;
 }
 
 :root {
@@ -95,12 +171,13 @@ body {
   display: block;
 }
 
-  @media (max-width: 768px) {
-    /* .mobile-container {
-      width: 220px !important;
-    } */
-    .nav-list{
-      display: flex;
-      flex-direction: column !important;
-    }
+
+@media (max-width: 768px) {
+  /* .mobile-container {
+    width: 220px !important;
+  } */
+  .nav-list{
+    display: flex;
+    flex-direction: column !important;
   }
+}

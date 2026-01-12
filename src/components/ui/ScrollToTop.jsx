@@ -38,7 +38,7 @@ const ScrollToTop = () => {
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
           // এখানে বর্ডার এবং শ্যাডো আপনার জোনাকি থিমের সাথে ম্যাচ করা
-          className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[100] p-4 rounded-full bg-[#0a0515]/80 backdrop-blur-md border border-primary/30 text-primary shadow-[0_0_15px_rgba(40,233,140,0.3)] hover:border-primary transition-all duration-300 group"
+          className="cursor-pointer fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[100] p-4 rounded-full bg-[#0a0515]/80 backdrop-blur-md border border-primary/30 text-primary shadow-[0_0_15px_rgba(40,233,140,0.3)] hover:border-primary transition-all duration-300 group"
         >
           <div className="relative">
             {/* জোনাকির মতো পালসিং গ্লো ইফেক্ট */}

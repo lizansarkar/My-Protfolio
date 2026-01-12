@@ -32,7 +32,7 @@ const Hero = () => {
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-[#060010] py-16 md:py-20"
     >
       {/* ১. Background Layer: LetterGlitch */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
         <LetterGlitch
           glitchColors={["#162a21", "#28e98c", "#060010"]}
           glitchSpeed={50}
@@ -53,7 +53,7 @@ const Hero = () => {
             hidden: { opacity: 0, x: -60 },
             visible: { opacity: 1, x: 0, transition: { duration: 1 } },
           }}
-          className="flex-1 flex justify-start items-center w-full"
+          className="flex-1 flex justify-start items-center w-full mt-12 md:mt-0"
         >
           <div className="relative group w-full max-w-[350px] md:max-w-[480px]">
             <div className="absolute -inset-4 bg-gradient-to-tr from-primary/30 via-emerald-500/20 to-transparent rounded-3xl blur-2xl opacity-30 group-hover:opacity-70 transition duration-700"></div>
@@ -132,7 +132,7 @@ const Hero = () => {
                 deletingSpeed={40}
                 showCursor={true}
                 cursorCharacter="|"
-                className="leading-none md:text-4xl xl:text-[60px] font-black"
+                className="leading-none md:text-4xl xl:text-[55px] font-black"
               />
               {/* ডাইনামিক আন্ডারলাইন SVG */}
               {/* <svg
@@ -153,7 +153,7 @@ const Hero = () => {
           {/* বিবরণ */}
           <motion.p
             variants={fadeInUp}
-            className="mt-12 text-white/60 text-base md:text-xl max-w-xl font-medium leading-relaxed"
+            className="text-white/60 text-base md:text-xl max-w-xl font-medium leading-relaxed"
           >
             I craft high-end digital solutions that blend{" "}
             <span className="text-white border-b-2 border-primary/50">
@@ -216,7 +216,7 @@ const Hero = () => {
           {/* সোশ্যাল মিডিয়া লিংক (ডেস্কটপে বামে এলাইন করা) */}
           <motion.div
             variants={fadeInUp}
-            className="mt-16 flex items-center justify-center lg:justify-start gap-10"
+            className="mt-16 items-center justify-center lg:justify-start gap-10 hidden md:flex"
           >
             <span className="text-[10px] tracking-[6px] uppercase text-white/40 font-bold hidden sm:block">
               Follow My Journey
