@@ -101,7 +101,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-24 relative overflow-hidden pattern-background"
+      className="py-16 relative overflow-hidden pattern-background"
     >
       <div className="container-base max-w-[1200px] mx-auto px-4 relative z-10 flex flex-col items-center">
         {/* Section Header */}

@@ -29,11 +29,9 @@ function App() {
   return (
     <div className="bg-[#060010] min-h-screen text-white selection:bg-primary selection:text-black">
       {/* <FireflyCursor></FireflyCursor> */}
-
       <Navbar />
       <main>
         <Hero />
-        
         <div className="container-base">
           <About />
           <Projects />
@@ -41,9 +39,7 @@ function App() {
           <Contact />
         </div>
       </main>
-
       <Footer />
-
       <ScrollToTop />
     </div>
   );

@@ -9,6 +9,10 @@ body {
   color: #eaeaea;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .container-base {
   /* max-width: 1400px; */
   margin-inline: auto;
@@ -170,7 +174,6 @@ body {
   pointer-events: none;
   display: block;
 }
-
 
 @media (max-width: 768px) {
   /* .mobile-container {

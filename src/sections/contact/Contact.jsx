@@ -1,10 +1,9 @@
 import React, { useRef, useState } from "react";
-// EmailJS ব্যবহারের জন্য নিচের লাইনটি আন-কমেন্ট করুন
-// import emailjs from '@emailjs/browser';
+import emailjs from '@emailjs/browser';
+import Swal from 'sweetalert2';
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import ElectricBorder from "../../components/ui/ElectricBorder";
-// import ElectricBorder from "./ElectricBorder";
 
 const Contact = () => {
   const form = useRef();
@@ -14,14 +13,37 @@ const Contact = () => {
     e.preventDefault();
     setIsSending(true);
 
-    /* ===========================================================
-    EMAILJS IMPLEMENTATION
-    =========================================================== */
-    // ডেমো ইফেক্ট (ইমেলজেএস সেট করলে এটি সরিয়ে দেবেন)
-    setTimeout(() => {
-      setIsSending(false);
-      console.log("Form is ready to send via EmailJS");
-    }, 2000);
+    // .env ফাইল থেকে আইডিগুলো নেওয়া হচ্ছে
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
+      .then((result) => {
+        setIsSending(false);
+        // সাকসেস মেসেজ (ডিজাইন অনুযায়ী কালার সেট করা)
+        Swal.fire({
+          title: 'Success!',
+          text: 'Message sent successfully! I will get back to you soon.',
+          icon: 'success',
+          confirmButtonColor: '#28e98c',
+          background: '#060010',
+          color: '#fff'
+        });
+        form.current.reset(); // মেসেজ পাঠানোর পর ফর্ম খালি করা
+      }, (error) => {
+        setIsSending(false);
+        // এরর মেসেজ
+        Swal.fire({
+          title: 'Error!',
+          text: 'Something went wrong. Please try again.',
+          icon: 'error',
+          confirmButtonColor: '#ef4444',
+          background: '#060010',
+          color: '#fff'
+        });
+        console.log(error.text);
+      });
   };
 
   const fadeInUp = {
@@ -117,18 +139,18 @@ const Contact = () => {
                     <input
                       type="email"
                       name="user_email"
-                      placeholder="email@example.com"
+                      placeholder="youremail@mail.com"
                       required
                       className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-6 py-4 outline-none focus:border-primary/50 transition-all text-white placeholder:text-white/20 backdrop-blur-md"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-white/60 ml-1">Subject (Optional)</label>
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-white/60 ml-1">Subject</label>
                     <input
                       type="text"
                       name="subject"
-                      placeholder="e.g., Project Proposal"
+                      placeholder="What are you emailing about?"
                       className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-6 py-4 outline-none focus:border-primary/50 transition-all text-white placeholder:text-white/20 backdrop-blur-md"
                     />
                   </div>
@@ -138,7 +160,7 @@ const Contact = () => {
                     <textarea
                       name="message"
                       rows="4"
-                      placeholder="Tell me about your project..."
+                      placeholder="Can you tell me the details here?..."
                       required
                       className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-6 py-4 outline-none focus:border-primary/50 transition-all text-white placeholder:text-white/20 backdrop-blur-md resize-none"
                     ></textarea>
