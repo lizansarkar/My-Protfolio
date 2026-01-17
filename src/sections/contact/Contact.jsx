@@ -3,6 +3,8 @@ import React, { useRef, useState } from "react";
 // import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
+import ElectricBorder from "../../components/ui/ElectricBorder";
+// import ElectricBorder from "./ElectricBorder";
 
 const Contact = () => {
   const form = useRef();
@@ -13,26 +15,9 @@ const Contact = () => {
     setIsSending(true);
 
     /* ===========================================================
-    EMAILJS IMPLEMENTATION (ব্যবহারের সময় নিচের কোডটি আন-কমেন্ট করুন)
-    ===========================================================
-    
-    emailjs.sendForm(
-      "YOUR_SERVICE_ID",   // EmailJS থেকে প্রাপ্ত Service ID
-      "YOUR_TEMPLATE_ID",  // EmailJS থেকে প্রাপ্ত Template ID
-      form.current,
-      "YOUR_PUBLIC_KEY"    // EmailJS থেকে প্রাপ্ত Public Key
-    )
-    .then(() => {
-        alert("Message sent successfully! ❤️");
-        setIsSending(false);
-        e.target.reset();
-    }, (error) => {
-        alert("Failed to send. Please try again.");
-        setIsSending(false);
-    });
-    */
-
-    // ডেমো ইফেক্ট (ইমেলজেএস সেট করলে এটি সরিয়ে দেবেন)
+    EMAILJS IMPLEMENTATION
+    =========================================================== */
+    // ডেমো ইফেক্ট (ইমেলজেএস সেট করলে এটি সরিয়ে দেবেন)
     setTimeout(() => {
       setIsSending(false);
       console.log("Form is ready to send via EmailJS");
@@ -66,8 +51,8 @@ const Contact = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
             </span>
-            <span className="text-primary inline-flex gap-2 px-2 text-[10px] md:text-xs uppercase font-black tracking-[4px]">
-              <Mail size={14} /> Contact
+            <span className="inline-flex py-1 items-center gap-2 text-primary text-[10px] md:text-xs uppercase font-black tracking-[4px]">
+              <Mail size={20} /> Contact
             </span>
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -77,14 +62,14 @@ const Contact = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* বাম দিক */}
+          {/* বাম দিক (Contact Info) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <h2 className="text-5xl md:text-7xl font-black leading-tight tracking-tighter">
+            <h2 className="text-5xl md:text-7xl font-black leading-tight tracking-tighter text-white">
               Let's Work <br />
               <span className="text-primary italic">Together!</span>
             </h2>
@@ -101,67 +86,75 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* ডান দিক: স্বচ্ছ গ্লাস ফর্ম */}
+          {/* ডান দিক: ইলেকট্রিক বর্ডার র‍্যাপার */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            // এখানে bg-white/[0.03] এবং backdrop-blur ব্যবহার করা হয়েছে স্বচ্ছতার জন্য
-            className="bg-white/[0.03] border border-white/10 p-8 md:p-12 rounded-[2.5rem] backdrop-blur-md shadow-2xl relative"
+            className="relative"
           >
-            <form ref={form} onSubmit={sendEmail} className="space-y-6 relative z-10">
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 ml-1">Full Name</label>
-                <input
-                  type="text"
-                  name="user_name"
-                  placeholder="Your full name"
-                  required
-                  className="w-full bg-white/[0.02] border border-white/5 rounded-2xl px-6 py-4 outline-none focus:border-primary/50 transition-all text-white placeholder:text-white/10"
-                />
-              </div>
+            <ElectricBorder
+              color="#28e98c"
+              speed={0}
+              chaos={0}
+              borderRadius={40}
+            >
+              <div className="p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden">
+                <form ref={form} onSubmit={sendEmail} className="space-y-6 relative z-10">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-white/60 ml-1">Full Name</label>
+                    <input
+                      type="text"
+                      name="user_name"
+                      placeholder="Your full name"
+                      required
+                      className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-6 py-4 outline-none focus:border-primary/50 transition-all text-white placeholder:text-white/20 backdrop-blur-md"
+                    />
+                  </div>
 
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 ml-1">Email</label>
-                <input
-                  type="email"
-                  name="user_email"
-                  placeholder="email@example.com"
-                  required
-                  className="w-full bg-white/[0.02] border border-white/5 rounded-2xl px-6 py-4 outline-none focus:border-primary/50 transition-all text-white placeholder:text-white/10"
-                />
-              </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-white/60 ml-1">Email</label>
+                    <input
+                      type="email"
+                      name="user_email"
+                      placeholder="email@example.com"
+                      required
+                      className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-6 py-4 outline-none focus:border-primary/50 transition-all text-white placeholder:text-white/20 backdrop-blur-md"
+                    />
+                  </div>
 
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 ml-1">Why do you want to message? (Optional)</label>
-                <input
-                  type="text"
-                  name="subject"
-                  placeholder="e.g., Project Proposal"
-                  className="w-full bg-white/[0.02] border border-white/5 rounded-2xl px-6 py-4 outline-none focus:border-primary/50 transition-all text-white placeholder:text-white/10"
-                />
-              </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-white/60 ml-1">Subject (Optional)</label>
+                    <input
+                      type="text"
+                      name="subject"
+                      placeholder="e.g., Project Proposal"
+                      className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-6 py-4 outline-none focus:border-primary/50 transition-all text-white placeholder:text-white/20 backdrop-blur-md"
+                    />
+                  </div>
 
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-white/40 ml-1">Message</label>
-                <textarea
-                  name="message"
-                  rows="4"
-                  placeholder="Tell me about your project..."
-                  required
-                  className="w-full bg-white/[0.02] border border-white/5 rounded-2xl px-6 py-4 outline-none focus:border-primary/50 transition-all text-white placeholder:text-white/10 resize-none"
-                ></textarea>
-              </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-white/60 ml-1">Message</label>
+                    <textarea
+                      name="message"
+                      rows="4"
+                      placeholder="Tell me about your project..."
+                      required
+                      className="w-full bg-white/[0.03] border border-white/5 rounded-2xl px-6 py-4 outline-none focus:border-primary/50 transition-all text-white placeholder:text-white/20 backdrop-blur-md resize-none"
+                    ></textarea>
+                  </div>
 
-              <button
-                type="submit"
-                disabled={isSending}
-                className="w-full bg-white/[0.03] border border-white/10 hover:border-primary/50 hover:text-primary py-5 rounded-2xl font-black uppercase tracking-[4px] transition-all flex items-center justify-center gap-3 group active:scale-95 cursor-pointer disabled:cursor-wait"
-              >
-                {isSending ? "Sending..." : "Send Message"}
-                <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </button>
-            </form>
+                  <button
+                    type="submit"
+                    disabled={isSending}
+                    className="w-full bg-primary/10 border border-primary/50 text-primary hover:bg-primary hover:text-black py-5 rounded-2xl font-black uppercase tracking-[4px] transition-all flex items-center justify-center gap-3 group active:scale-95 cursor-pointer disabled:cursor-wait"
+                  >
+                    {isSending ? "Sending..." : "Send Message"}
+                    <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </button>
+                </form>
+              </div>
+            </ElectricBorder>
           </motion.div>
         </div>
       </div>
@@ -171,7 +164,6 @@ const Contact = () => {
 
 const ContactInfo = ({ icon, label, value }) => (
   <div className="flex items-center gap-6 group cursor-default">
-    {/* আইকন বক্স যা পুরোপুরি স্বচ্ছ এবং ডট প্যাটার্ন দেখায় */}
     <div className="w-14 h-14 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center backdrop-blur-md group-hover:border-primary/50 transition-all duration-500">
       {icon}
     </div>

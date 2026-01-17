@@ -20,7 +20,7 @@ body {
   height: 100%;
   /* Add your background pattern here */
   background-color: #060010;
-  background-image: radial-gradient(rgba(0, 255, 85, 0.410) 2px, transparent 0);
+  background-image: radial-gradient(rgba(0, 255, 85, 0.110) 2px, transparent 0);
   background-size: 30px 30px;
   background-position: -5px -5px
 }

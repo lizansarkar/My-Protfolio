@@ -173,7 +173,7 @@ const Hero = () => {
           >
             {/* Resume Download Button */}
             <a
-              href="/resume.pdf"
+              href="/Lizan-Sarkar-Resume.pdf"
               download="Lizan_Resume.pdf"
               className="group relative flex items-center gap-4 px-8 py-5 rounded-2xl overflow-hidden transition-all duration-300 hover:border-primary hover:bg-primary/5"
             >
@@ -197,7 +197,7 @@ const Hero = () => {
               {/* Text Label */}
               <div className="flex flex-col items-start">
                 <span className="text-white font-black tracking-widest uppercase text-sm group-hover:text-primary transition-colors">
-                  Download CV
+                  Download Resume
                 </span>
                 <span className="text-[10px] text-white/40 uppercase tracking-[2px] font-bold">
                   PDF Format

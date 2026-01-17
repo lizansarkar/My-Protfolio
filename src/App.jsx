@@ -36,8 +36,8 @@ function App() {
         
         <div className="container-base">
           <About />
-          <Skills />
           <Projects />
+          <Skills />
           <Contact />
         </div>
       </main>

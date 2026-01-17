@@ -1,9 +1,220 @@
-import React from 'react'
+import { useEffect, useRef, useCallback } from 'react';
 
-const ElectricBorder = () => {
-  return (
-    <div>ElectricBorder</div>
-  )
+// Hex কালারকে RGBA তে রূপান্তর করার ফাংশন (স্বচ্ছতার জন্য)
+function hexToRgba(hex, alpha = 1) {
+  if (!hex) return `rgba(0,0,0,${alpha})`;
+  let h = hex.replace('#', '');
+  if (h.length === 3) {
+    h = h.split('').map(c => c + c).join('');
+  }
+  const int = parseInt(h, 16);
+  const r = (int >> 16) & 255;
+  const g = (int >> 8) & 255;
+  const b = int & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
-export default ElectricBorder
+const ElectricBorder = ({
+  children,
+  color = '#5227FF',
+  speed = 1,
+  chaos = 0.12,
+  borderRadius = 24,
+  className,
+  style
+}) => {
+  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
+  const animationRef = useRef(null);
+  const timeRef = useRef(0);
+  const lastFrameTimeRef = useRef(0);
+
+  // Noise Generation Functions
+  const random = useCallback(x => {
+    return (Math.sin(x * 12.9898) * 43758.5453) % 1;
+  }, []);
+
+  const noise2D = useCallback((x, y) => {
+    const i = Math.floor(x);
+    const j = Math.floor(y);
+    const fx = x - i;
+    const fy = y - j;
+    const a = random(i + j * 57);
+    const b = random(i + 1 + j * 57);
+    const c = random(i + (j + 1) * 57);
+    const d = random(i + 1 + (j + 1) * 57);
+    const ux = fx * fx * (3.0 - 2.0 * fx);
+    const uy = fy * fy * (3.0 - 2.0 * fy);
+    return a * (1 - ux) * (1 - uy) + b * ux * (1 - uy) + c * (1 - ux) * uy + d * ux * uy;
+  }, [random]);
+
+  const octavedNoise = useCallback((x, octaves, lacunarity, gain, baseAmplitude, baseFrequency, time, seed, baseFlatness) => {
+    let y = 0;
+    let amplitude = baseAmplitude;
+    let frequency = baseFrequency;
+    for (let i = 0; i < octaves; i++) {
+      let octaveAmplitude = amplitude;
+      if (i === 0) octaveAmplitude *= baseFlatness;
+      y += octaveAmplitude * noise2D(frequency * x + seed * 100, time * frequency * 0.3);
+      frequency *= lacunarity;
+      amplitude *= gain;
+    }
+    return y;
+  }, [noise2D]);
+
+  const getCornerPoint = useCallback((centerX, centerY, radius, startAngle, arcLength, progress) => {
+    const angle = startAngle + progress * arcLength;
+    return {
+      x: centerX + radius * Math.cos(angle),
+      y: centerY + radius * Math.sin(angle)
+    };
+  }, []);
+
+  const getRoundedRectPoint = useCallback((t, left, top, width, height, radius) => {
+    const straightWidth = width - 2 * radius;
+    const straightHeight = height - 2 * radius;
+    const cornerArc = (Math.PI * radius) / 2;
+    const totalPerimeter = 2 * straightWidth + 2 * straightHeight + 4 * cornerArc;
+    const distance = t * totalPerimeter;
+    let accumulated = 0;
+
+    if (distance <= accumulated + straightWidth) {
+      const progress = (distance - accumulated) / straightWidth;
+      return { x: left + radius + progress * straightWidth, y: top };
+    }
+    accumulated += straightWidth;
+    if (distance <= accumulated + cornerArc) {
+      const progress = (distance - accumulated) / cornerArc;
+      return getCornerPoint(left + width - radius, top + radius, radius, -Math.PI / 2, Math.PI / 2, progress);
+    }
+    accumulated += cornerArc;
+    if (distance <= accumulated + straightHeight) {
+      const progress = (distance - accumulated) / straightHeight;
+      return { x: left + width, y: top + radius + progress * straightHeight };
+    }
+    accumulated += straightHeight;
+    if (distance <= accumulated + cornerArc) {
+      const progress = (distance - accumulated) / cornerArc;
+      return getCornerPoint(left + width - radius, top + height - radius, radius, 0, Math.PI / 2, progress);
+    }
+    accumulated += cornerArc;
+    if (distance <= accumulated + straightWidth) {
+      const progress = (distance - accumulated) / straightWidth;
+      return { x: left + width - radius - progress * straightWidth, y: top + height };
+    }
+    accumulated += straightWidth;
+    if (distance <= accumulated + cornerArc) {
+      const progress = (distance - accumulated) / cornerArc;
+      return getCornerPoint(left + radius, top + height - radius, radius, Math.PI / 2, Math.PI / 2, progress);
+    }
+    accumulated += cornerArc;
+    if (distance <= accumulated + straightHeight) {
+      const progress = (distance - accumulated) / straightHeight;
+      return { x: left, y: top + height - radius - progress * straightHeight };
+    }
+    accumulated += straightHeight;
+    const progress = (distance - accumulated) / cornerArc;
+    return getCornerPoint(left + radius, top + radius, radius, Math.PI, Math.PI / 2, progress);
+  }, [getCornerPoint]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const updateSize = () => {
+      const rect = container.getBoundingClientRect();
+      const borderOffset = 60;
+      const width = rect.width + borderOffset * 2;
+      const height = rect.height + borderOffset * 2;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.scale(dpr, dpr);
+      return { width, height, borderOffset };
+    };
+
+    let { width, height, borderOffset } = updateSize();
+
+    const draw = currentTime => {
+      const deltaTime = (currentTime - lastFrameTimeRef.current) / 1000;
+      timeRef.current += deltaTime * speed;
+      lastFrameTimeRef.current = currentTime;
+
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.scale(dpr, dpr);
+
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.lineCap = 'round';
+
+      const left = borderOffset;
+      const top = borderOffset;
+      const bWidth = width - 2 * borderOffset;
+      const bHeight = height - 2 * borderOffset;
+      const radius = Math.min(borderRadius, bWidth / 2, bHeight / 2);
+
+      const sampleCount = Math.floor((2 * (bWidth + bHeight) + 2 * Math.PI * radius) / 2);
+      ctx.beginPath();
+
+      for (let i = 0; i <= sampleCount; i++) {
+        const progress = i / sampleCount;
+        const point = getRoundedRectPoint(progress, left, top, bWidth, bHeight, radius);
+        const noiseX = octavedNoise(progress * 8, 10, 1.6, 0.7, chaos, 10, timeRef.current, 0, 0);
+        const noiseY = octavedNoise(progress * 8, 10, 1.6, 0.7, chaos, 10, timeRef.current, 1, 0);
+        
+        const dx = point.x + noiseX * 60;
+        const dy = point.y + noiseY * 60;
+
+        if (i === 0) ctx.moveTo(dx, dy);
+        else ctx.lineTo(dx, dy);
+      }
+      ctx.closePath();
+      ctx.stroke();
+      animationRef.current = requestAnimationFrame(draw);
+    };
+
+    const resizeObserver = new ResizeObserver(() => {
+      const s = updateSize();
+      width = s.width; height = s.height; borderOffset = s.borderOffset;
+    });
+    resizeObserver.observe(container);
+    animationRef.current = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(animationRef.current);
+      resizeObserver.disconnect();
+    };
+  }, [color, speed, chaos, borderRadius, octavedNoise, getRoundedRectPoint]);
+
+  return (
+    <div
+      ref={containerRef}
+      className={`relative overflow-visible isolate ${className ?? ''}`}
+      style={{ borderRadius, ...style }}
+    >
+      {/* Canvas layer for the electric effect */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-[2]">
+        <canvas ref={canvasRef} className="block" />
+      </div>
+      
+      {/* Glowing background layers */}
+      <div className="absolute inset-0 rounded-[inherit] pointer-events-none z-0">
+        <div className="absolute inset-0 rounded-[inherit] border-2 opacity-60 blur-[1px]" style={{ borderColor: hexToRgba(color, 0.6) }} />
+        <div className="absolute inset-0 rounded-[inherit] border-2 blur-[4px]" style={{ borderColor: color }} />
+        <div className="absolute inset-0 rounded-[inherit] -z-[1] scale-110 opacity-20 blur-[32px]" 
+             style={{ background: `linear-gradient(-30deg, ${color}, transparent, ${color})` }} />
+      </div>
+
+      <div className="relative rounded-[inherit] z-[1]">{children}</div>
+    </div>
+  );
+};
+
+export default ElectricBorder;

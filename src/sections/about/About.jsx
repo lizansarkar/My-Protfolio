@@ -1,6 +1,6 @@
 import React from "react";
 import Stepper, { Step } from "../../components/ui/Stepper";
-import { Terminal, Cpu, Rocket, Globe } from "lucide-react";
+import { Terminal, Cpu, Rocket, Globe, ShieldUser } from "lucide-react";
 import { motion } from "framer-motion";
 
 const About = () => {
@@ -34,8 +34,8 @@ const About = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
             </span>
-            <span className="text-primary text-[10px] md:text-xs uppercase font-black tracking-[4px]">
-              About Me
+            <span className="inline-flex items-center gap-2 text-primary text-[10px] md:text-xs uppercase font-black tracking-[4px]">
+              <ShieldUser size={20}></ShieldUser> About Me
             </span>
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
