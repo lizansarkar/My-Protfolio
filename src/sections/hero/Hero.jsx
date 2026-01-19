@@ -11,6 +11,8 @@ import {
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
+import ProfileImg from "../../assets/images/remove-profile.png";
+
 const Hero = () => {
   // এনিমেশন ভ্যারিয়েন্ট - viewport { once: false } যাতে স্ক্রল করলে বারবার প্লে হয়
   const fadeInUp = {
@@ -62,12 +64,12 @@ const Hero = () => {
             <div className="relative z-10 aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-2xl transition-all duration-500 group-hover:border-primary/30">
               {/* ইমেজ */}
               <img
-                src="/src/assets/images/remove-profile.png"
+                src={ProfileImg}
                 alt="Profile"
                 className="w-full h-full object-cover transition-all duration-1000 scale-100 group-hover:scale-110 opacity-90 group-hover:opacity-100"
               />
 
-              {/* ৩. গ্লাস গ্রেডিয়েন্ট ওভারলে (Navbar এর মত ইফেক্ট) */}
+              {/* ৩. গ্লাস গ্রেডিয়েন্ট ওভারলে (Navbar এর মত ইফেক্ট) */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0515] via-[#0a0515]/20 to-transparent opacity-80"></div>
 
               {/* গ্লাস শাইন ইফেক্ট (হোভার করলে দেখা যাবে) */}
@@ -75,14 +77,13 @@ const Hero = () => {
             </div>
 
             {/* ৪. এক্সপেরিয়েন্স ব্যাজ (এটিও গ্লাস ইফেক্টে) */}
-            <motion.div
+            {/* <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: false }}
               transition={{ delay: 0.5, type: "spring" }}
               className="absolute -bottom-6 -right-4 md:-right-8 bg-white/5 border border-white/10 p-5 md:p-8 rounded-2xl backdrop-blur-xl z-20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group-hover:border-primary/40 transition-colors duration-500"
             >
-              {/* ব্যাজের পেছনে একটি ছোট গ্লো */}
               <div className="absolute inset-0 bg-primary/5 blur-xl rounded-2xl"></div>
 
               <div className="relative z-10 text-4xl md:text-5xl font-black text-primary drop-shadow-[0_0_15px_rgba(40,233,140,0.6)]">
@@ -91,7 +92,7 @@ const Hero = () => {
               <div className="relative z-10 text-[10px] md:text-xs text-white uppercase tracking-[4px] font-bold mt-2 leading-tight opacity-80">
                 Years of <br /> Experience
               </div>
-            </motion.div>
+            </motion.div> */}
           </div>
         </motion.div>
 
@@ -155,13 +156,13 @@ const Hero = () => {
             variants={fadeInUp}
             className="text-white/60 text-base md:text-xl max-w-xl font-medium leading-relaxed"
           >
-            I craft high-end digital solutions that blend{" "}
+            A creative developer crafting {" "}
             <span className="text-white border-b-2 border-primary/50">
-              creative design
+               elegant interfaces {" "}
             </span>{" "}
-            with{" "}
+            backed by {" "}
             <span className="text-white border-b-2 border-primary/50">
-              robust engineering
+              robust engineering {" "}
             </span>
             .
           </motion.p>
@@ -173,7 +174,7 @@ const Hero = () => {
           >
             {/* Resume Download Button */}
             <a
-              href="/Lizan-Sarkar-Resume.pdf"
+              href="/my-resume.pdf"
               download="Lizan_Resume.pdf"
               className="group relative flex items-center gap-4 px-8 py-5 rounded-2xl overflow-hidden transition-all duration-300 hover:border-primary hover:bg-primary/5"
             >
