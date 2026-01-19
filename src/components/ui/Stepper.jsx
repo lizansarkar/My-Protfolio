@@ -39,7 +39,7 @@ export default function Stepper({
         <div className="absolute top-0 left-1/4 w-1/2 h-[1px]"></div>
         
         {/* Step Indicators */}
-        <div className="flex items-center justify-between p-6 md:p-10 border-b border-white/5 bg-white/[0.02]">
+        <div className="flex items-center justify-between p-6 md:p-10 border-b border-white/10 pattern-background">
           {stepsArray.map((_, index) => (
             <React.Fragment key={index}>
               <div 
@@ -67,7 +67,7 @@ export default function Stepper({
         </div>
 
         {/* Content Area */}
-        <div className="relative p-8 md:p-16 min-h-[300px] md:min-h-[350px] flex items-center">
+        <div className="relative p-8 md:p-16 min-h-[300px] md:min-h-[350px] flex items-center pattern-background">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentStep}
@@ -84,7 +84,7 @@ export default function Stepper({
         </div>
 
         {/* Footer Buttons */}
-        <div className="p-6 md:p-8 flex justify-between items-center bg-white/[0.01] border-t border-white/5">
+        <div className="p-6 md:p-8 flex justify-between items-center border-t border-white/5 pattern-background">
           <button
             onClick={handleBack}
             className={`px-6 py-2 text-sm font-semibold transition-all cursor-pointer ${
