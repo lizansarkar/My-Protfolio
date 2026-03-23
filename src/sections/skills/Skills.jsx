@@ -117,9 +117,18 @@ const Skills = () => {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-3 px-5 py-2 mb-6 border border-primary/30 bg-primary/10 rounded-full">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+            </span>
             <Cpu size={18} className="text-primary" />
             <span className="text-primary text-[10px] md:text-xs uppercase font-black tracking-[4px]">
               My Expertise
+            </span>
+
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
             </span>
           </div>
           <h2 className="text-5xl md:text-7xl font-black text-white">
