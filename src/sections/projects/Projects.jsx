@@ -53,7 +53,7 @@ const projectsData = [
     color: "#28e98c",
     description: "MicroEarn is a full-stack Micro Task & Earning Platform built using the MERN Stack. The platform allows users to earn money by completing small tasks, while Buyers can create tasks and pay Workers using a coin-based system. Admins manage users, tasks, payments, and withdrawals to ensure system integrity.",
     tags: ["Tailwind", "React", "Framer Motion", "Lottie", "Firebase", "Express", "Node.js", "MongoDB"],
-    link: "#",
+    link: "https://micro-earn-888f8.web.app",
     icon: <CircleDollarSign size={24} strokeWidth={1.5} />
   },
   {

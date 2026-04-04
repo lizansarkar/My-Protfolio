@@ -10,6 +10,7 @@ import ScrollToTop from "./components/ui/ScrollToTop";
 import { Scroll } from "lucide-react";
 import Lenis from 'lenis';
 import Skills from './sections/skills/Skills';
+import Achievement from './sections/archivement/Archivement';
 
 function App() {
   useEffect(() => {
@@ -36,6 +37,7 @@ function App() {
           <About />
           <Projects />
           <Skills />
+          <Achievement/>
           <Contact />
         </div>
       </main>
