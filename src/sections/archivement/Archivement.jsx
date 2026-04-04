@@ -64,7 +64,7 @@ const Achievement = () => {
           className="group relative mx-auto"
         >
           {/* Card Border Glow */}
-          <div className="absolute -inset-[1px] from-primary/50 via-primary/10 to-primary/50 rounded-[32px] blur-sm opacity-20 group-hover:opacity-100 group-hover:blur-md transition-all duration-700"></div>
+          <div className="-inset-[1px] from-primary/50 via-primary/10 to-primary/50 rounded-[32px] blur-sm opacity-20 group-hover:opacity-100 group-hover:blur-md transition-all duration-700"></div>
 
           <div className="rounded-[32px] overflow-hidden p-6 md:p-0">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
