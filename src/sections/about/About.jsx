@@ -72,7 +72,7 @@ const About = () => {
                 </div>
                 <div className="order-2 w-full bg-white/5 aspect-video rounded-2xl border border-white/10 relative overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center text-primary/10 font-black text-6xl md:text-8xl">
-                    <img src="/js.jpg" alt="" className="h-full w-full" />
+                    <img src="/first-learning.jpg" alt="" className="h-full w-full" />
                   </div>
                 </div>
               </div>
