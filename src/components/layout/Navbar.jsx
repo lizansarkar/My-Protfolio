@@ -6,7 +6,6 @@ import {
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import GooeyNav from "../ui/GooeyNav";
-import { Target } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,10 +19,11 @@ const Navbar = () => {
     { name: "Contact", href: "#contact" },
   ];
 
+
   const socialLinks = [
-    { icon: faGithub, href: "https://github.com/lizansarkar", Target: "_blank" },
     { icon: faLinkedinIn, href: "https://www.linkedin.com/in/lizan-sarkar-707042393/", Target: "_blank" },
     { icon: faXTwitter, href: "https://x.com/LizanIslam35436", Target: "_blank" },
+    { icon: faGithub, href: "https://github.com/lizansarkar", Target: "_blank" },
   ];
 
   return (
