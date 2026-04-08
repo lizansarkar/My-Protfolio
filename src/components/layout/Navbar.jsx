@@ -19,15 +19,31 @@ const Navbar = () => {
     { name: "Contact", href: "#contact" },
   ];
 
-
   const socialLinks = [
-    { icon: faLinkedinIn, href: "https://www.linkedin.com/in/lizan-sarkar-707042393/", Target: "_blank" },
-    { icon: faXTwitter, href: "https://x.com/LizanIslam35436", Target: "_blank" },
-    { icon: faGithub, href: "https://github.com/lizansarkar", Target: "_blank" },
+    {
+      icon: faLinkedinIn,
+      href: "https://www.linkedin.com/in/lizan-sarkar-707042393/",
+      Target: "_blank",
+    },
+    {
+      icon: faXTwitter,
+      href: "https://x.com/LizanIslam35436",
+      Target: "_blank",
+    },
+    {
+      icon: "https://cdn.iconscout.com/icon/free/png-256/free-leetcode-logo-icon-svg-download-png-2944960.png",
+      href: "https://leetcode.com/u/Z33VeyQvdf/",
+      Target: "_blank",
+    },
+    {
+      icon: faGithub,
+      href: "https://github.com/lizansarkar",
+      Target: "_blank",
+    },
   ];
 
   return (
-    <header className="fixed top-8 left-0 w-full z-[100] px-4">
+    <header className="fixed top-8 left-0 w-full z-100 px-4">
       <nav className="relative max-w-[1400px] mx-auto">
         {/* Main Navbar Body */}
         <div className="navbar-lightning-container relative bg-black/10 backdrop-blur-sm border border-white/5 py-4 px-6 md:px-8 rounded-2xl flex justify-between items-center shadow-[0_15px_40px_rgba(0,0,0,0.4)] group transition-all duration-300">
@@ -106,10 +122,18 @@ const Navbar = () => {
                 target={social.Target}
                 className="text-secondary/70 hover:text-primary transition-all duration-300 hover:scale-125 filter hover:drop-shadow-[0_0_15px_#28e98c]"
               >
-                <FontAwesomeIcon
-                  icon={social.icon}
-                  className="text-lg md:text-xl"
-                />
+                {typeof social.icon === "string" ? (
+                  <img
+                    src={social.icon}
+                    alt="leetcode"
+                    className="w-4 h-4 md:w-5 md:h-5 invert"
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={social.icon}
+                    className="text-lg md:text-xl"
+                  />
+                )}
               </a>
             ))}
           </div>
