@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { ArrowDownToLine } from "lucide-react";
 import LetterGlitch from "../../components/ui/LetterGlitch";
 import TextType from "../../components/ui/TextType";
-// import { Download } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGithub,
@@ -14,7 +13,6 @@ import {
 import ProfileImg from "../../assets/images/remove-profile.png";
 
 const Hero = () => {
-  // এনিমেশন ভ্যারিয়েন্ট - viewport { once: false } যাতে স্ক্রল করলে বারবার প্লে হয়
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -127,7 +125,7 @@ const Hero = () => {
             <br />
             <span className="text-primary italic relative inline-flex flex-col items-start min-h-[1.2em]">
               <TextType
-                text={["Frontend Developer", "Designer", "Software Engineer"]}
+                text={["Full Stack Developer", "Designer", "Software Engineer"]}
                 typingSpeed={80}
                 pauseDuration={2000}
                 deletingSpeed={40}

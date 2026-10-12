@@ -126,7 +126,7 @@ const About = () => {
                     Something Experience
                   </h3>
                   <p className="text-white/50 text-base md:text-lg leading-relaxed max-w-2xl mx-auto md:mx-0">
-                    I worked as a Frontend Developer at a local agency in
+                    I worked as a full stack Developer at a local agency in
                     Bangladesh, where I contributed to real client projects. My
                     role involved building responsive user interfaces using
                     React, implementing animations with Framer Motion, and

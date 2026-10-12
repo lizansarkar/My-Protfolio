@@ -95,7 +95,6 @@ const skillsData = [
 const Skills = () => {
   const [activeTab, setActiveTab] = useState("All");
 
-  // নতুন ক্যাটাগরি সহ লিস্ট
   const categories = ["All", "Frontend", "Backend", "Tools", "Design Tools"];
 
   const filteredSkills =
